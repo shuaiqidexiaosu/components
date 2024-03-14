@@ -50,8 +50,10 @@ const router = new VueRouter({
       ]
     }, {
       path: '/404',
-      name: 'notfound',
-      component: () => import('@/components/error-pages/404.vue')
+      component: () => import('@/components/error-pages/404.vue'),
+      meta: {
+        title: '404页面'
+      },
     }, {
       path: '*',
       redirect: '/404',

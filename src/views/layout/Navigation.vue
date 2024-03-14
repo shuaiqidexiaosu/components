@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div >
     <el-menu :default-active="myPath" class="el-menu-vertical-demo " @open="handleOpen" @close="handleClose" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" router>
       <div>
         <router-link to="/" class="router">
@@ -10,15 +10,15 @@
         <i class="el-icon-s-home"></i>
         <span slot="title">主页</span>
       </el-menu-item>
-      <el-menu-item index="/tools" class="router">
+      <el-menu-item index="/tools" >
         <i class="el-icon-menu"></i>
         <span slot="title">工具</span>
       </el-menu-item>
-      <el-menu-item index="/setting" class="router">
+      <el-menu-item index="/setting" >
         <i class="el-icon-s-tools"></i>
         <span slot="title">设置</span>
       </el-menu-item>
-      <el-menu-item index="/mine" class="router">
+      <el-menu-item index="/mine">
         <i class="el-icon-user-solid"></i>
         <span slot="title">我的</span>
       </el-menu-item>
@@ -41,6 +41,7 @@ export default {
 
 
 <style lang="less" scoped>
+
 .el-menu {
   border: 0;
 }
