@@ -1,0 +1,94 @@
+{
+    "posts": [
+        {
+            "id": "1",
+            "title": "json-server",
+            "author": "typicode"
+        }
+    ],
+    "comments": [
+        {
+            "id": "1",
+            "body": "some comment",
+            "postId": 1
+        }
+    ],
+    "profile": {
+        "test": {
+            "name": "typicode",
+            "id": "8c72"
+        }
+    },
+    "test": [
+        {
+            "name": "typicode",
+            "id": "8c72"
+        }
+    ],
+    "login":{
+        "username":"苏健尧",
+        "password":"123456"
+    },
+    "users": [
+        {
+            "id": "1",
+            "username": "苏健尧",
+            "email": "sujianyao@example.com",
+            "profile": {
+                "firstName": "苏健",
+                "lastName": "尧",
+                "age": 30
+            }
+        },
+        {
+            "id": "2",
+            "username": "另一个用户",
+            "email": "anotheruser@example.com",
+            "profile": {
+                "firstName": "另一个",
+                "lastName": "用户",
+                "age": 25
+            }
+        },
+        {
+            "id": "3",
+            "username": "另一个用户",
+            "email": "anotheruser@example.com",
+            "profile": {
+                "firstName": "另一个",
+                "lastName": "用户",
+                "age": 25
+            }
+        },
+        {
+            "id": "4",
+            "username": "另一个用户",
+            "email": "anotheruser@example.com",
+            "profile": {
+                "firstName": "另一个",
+                "lastName": "用户",
+                "age": 25
+            }
+        },
+        {
+            "id": "5",
+            "username": "测试",
+            "email": "anotheruser@example.com",
+            "profile": {
+                "firstName": "另一个",
+                "lastName": "用户",
+                "age": 25
+            }
+        },
+        {
+            "id": "6",
+            "username": "另一个用户",
+            "email": "anotheruser@example.com",
+            "profile": {
+                "firstName": "另一个",
+                "lastName": "用户",
+                "age": 25
+            }
+        }
+    ]
+}

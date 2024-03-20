@@ -5,19 +5,46 @@
         <h1>苏健尧的工具箱</h1>
       </div>
       <div class="login-form">
-        <el-form :model="login_form" :rules="loginRules" ref="loginForm">
-          <el-form-item prop="userName">
-            <el-input type="text" v-model="login_form.userName" auto-complete="off" placeholder="请输入用户名">
-              <template slot="prepend"><i style="font-size:20px" class="el-icon-user"></i></template>
+        <el-form :model="login_form" :rules="loginRules" ref="loginFormRef">
+          <el-form-item prop="username">
+            <el-input
+              type="text"
+              v-model="login_form.username"
+              placeholder="请输入用户名"
+              @keydown.enter.native="handleLogin"
+            >
+              <template slot="prepend"
+                ><i style="font-size: 20px" class="el-icon-user"></i
+              ></template>
             </el-input>
           </el-form-item>
-          <el-form-item prop="passWord">
-            <el-input type="text" v-model="login_form.passWord" auto-complete="off" placeholder="请输入密码">
-              <template slot="prepend"><i style="font-size:20px" class="el-icon-key"></i></template>
+          <el-form-item prop="password">
+            <el-input
+              type="password"
+              v-model="login_form.password"
+              show-password
+              placeholder="请输入密码"
+              @keydown.enter.native="handleLogin"
+            >
+              <!-- el组件要加native -->
+              <template slot="prepend"
+                ><i style="font-size: 20px" class="el-icon-key"></i
+              ></template>
             </el-input>
           </el-form-item>
+
+          <el-form-item style="margin-top: -10px; margin-bottom: -5px">
+            <el-checkbox
+              v-model="checked"
+              style="color: #a0a0a0; margin-top: -10px"
+              >点击填写登陆信息</el-checkbox
+            >
+          </el-form-item>
+
           <el-form-item>
-            <el-button style="width:100%;" type="primary" @click="handleLogin" :loading="loading">登录</el-button>
+            <el-button style="width: 100%" type="primary" @click="handleLogin"
+              >登录</el-button
+            >
           </el-form-item>
         </el-form>
       </div>
@@ -26,45 +53,65 @@
 </template>
 
 <script>
-
 export default {
   name: 'Login',
   data() {
     return {
-      loading: false,
+      checked: false,
       login_form: {
-        userName: '',
-        passWord: ''
+        username: '',
+        password: '',
       },
       loginRules: {
-        userName: [
-          { required: true, message: '请输入账户', trigger: 'blur' },
-          {}
-        ],
-        passWord: [
-          { required: true, message: '请输入密码', trigger: 'blur' }
-        ]
-      }
+        username: [{ required: true, message: '请输入账户', trigger: 'blur' }],
+        password: [{ required: true, message: '请输入密码', trigger: 'blur' }],
+      },
     }
+  },
+  mounted() {
+    this.$notify({
+      title: '提示',
+      dangerouslyUseHTMLString: true,
+      message: `
+      账号:苏健尧<br>
+      密码:123456`,
+      type: 'success',
+      duration:10000
+    })
+  },
+  watch: {
+    checked() {
+      if (this.checked === true) {
+        this.login_form.username = sessionStorage.getItem('username')
+        this.login_form.password = sessionStorage.getItem('password')
+      }
+    },
   },
   methods: {
     handleLogin() {
-      this.$refs.loginForm.validate().then(() => {
-        this.loading = true;
-
-        //模拟异步请求后台接口 登录操作
-        setTimeout(() => {
-          this.$router.push('/home');
-          this.loading = false;
-        }, 1000)
-      }).catch((error => {
-        this.$message({
-          message: '输入错误！',
-          type: 'warning'
-        });
-      }))
-    }
-  }
+      if (
+        this.login_form.username === '苏健尧' &&
+        this.login_form.password === '123456'
+      ) {
+        sessionStorage.setItem('isAuth', 'true')
+        this.$router.push({ name: 'home' })
+        console.log('router')
+        this.$store.commit('setUsername', this.login_form.username)
+        sessionStorage.setItem('username', this.login_form.username)
+        sessionStorage.setItem('password', this.login_form.password)
+        this.$notify({
+          title: '祝贺主人',
+          message: '登陆成功',
+          type: 'success',
+        })
+      } else {
+        this.$notify.error({
+          title: '错误',
+          message: '主人,账号或密码错误',
+        })
+      }
+    },
+  },
 }
 </script>
 
@@ -90,4 +137,3 @@ h1 {
   box-shadow: 6px 6px 6px 5px rgba(0, 0, 0, 0.16);
 }
 </style>
-
